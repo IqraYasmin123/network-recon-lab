@@ -5,8 +5,6 @@ Thumbs.db
 !.vscode/settings.json
 
 # Large/binary capture files (keep repo light -- comment out if you want to commit them)
-captures/*.pcap
-captures/*.pcapng
 
 # Nmap raw XML if you regenerate often
 scans/*.xml
