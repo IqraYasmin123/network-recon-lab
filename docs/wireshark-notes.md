@@ -26,16 +26,18 @@
 
 ## Protocols identified in my capture
 
-_(Fill in as you go — list each protocol you spotted, what it was doing,
-and a one-line note on why it matters.)_
-
 | Protocol | What I saw | Notes |
 |----------|------------|-------|
-|          |            |       |
+| ICMP | 4 Echo Request/Reply pairs from `ping 192.168.142.136` (Kali → Metasploitable2) | Confirms basic reachability between the two VMs before any port-level traffic |
+| TCP | Full three-way handshake (SYN → SYN/ACK → ACK) on port 80, followed by a graceful close (FIN/ACK) | Shows a TCP connection being established and torn down before any HTTP data is sent |
+| HTTP | `GET / HTTP/1.1` request from Kali, `HTTP/1.1 200 OK` response from Metasploitable2's Apache server | "Follow HTTP Stream" showed the full Metasploitable2 welcome page HTML in the response body |
+| ARP | Broadcast "Who has X? Tell Y" requests between the VMs | Normal address resolution — MAC addresses being resolved for the IPs before communication |
+| MDNS / SSDP | Background broadcasts originating from the host machine (192.168.142.1) | Unrelated to the lab traffic itself — Windows host network service discovery chatter picked up because it shares the host-only network |
 
 ## Screenshot checklist
 
-- [ ] Capture running / packet list view
-- [ ] A filtered view (e.g., `dns` or `http`)
-- [ ] A "Follow TCP Stream" window
-- [ ] Confirmation of exported `.pcapng` file
+- [x] Capture running / packet list view
+- [x] A filtered view (`icmp`)
+- [x] A filtered view (`http`)
+- [x] A "Follow HTTP Stream" window
+- [x] Confirmation of exported `.pcapng` file
