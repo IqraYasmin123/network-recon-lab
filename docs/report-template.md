@@ -155,3 +155,6 @@ determines the entire attack path before a single exploit is ever run.
 | `scans/*.txt` | Raw Nmap output |
 | `captures/*.pcapng` | Wireshark capture export |
 | `screenshots/*.png` | Supporting screenshots |
+## Repository
+
+Live at: https://github.com/IqraYasmin123/network-recon-lab
