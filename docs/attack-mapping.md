@@ -28,11 +28,8 @@ Reference: https://attack.mitre.org/
 | Port scanning | Reconnaissance | T1595 – Active Scanning |
 | Service/version detection | Discovery | T1046 – Network Service Discovery |
 | OS fingerprinting | Discovery | T1082 – System Information Discovery |
-
-_(Adjust/expand this table based on what you actually did — the IDs above
-are the common ones for basic Nmap recon, but double-check them against
-the current ATT&CK site since technique numbering does get revised.)_
-
+| Exploiting the vsftpd backdoor to get a shell | Initial Access | T1190 – Exploit Public-Facing Application |
+| Using the backdoor's shell to run further commands | Execution | T1059 – Command and Scripting Interpreter |
 ## Reflection
 
 _(2–3 sentences: how would a real attacker use this recon info as a next
