@@ -33,5 +33,27 @@ behind NAT:
 
 ### My own practice problems
 
-_(Add 2–3 subnetting problems you worked through by hand here, with your
-answers — good evidence of practice for the submission.)_
+**Problem 1 — How many usable hosts in a /27?**
+
+A `/27` has 32 total addresses (2^(32-27) = 2^5 = 32). Subtracting the
+network address and broadcast address leaves **30 usable hosts**.
+Example: `192.168.10.0/27` → network `192.168.10.0`, usable range
+`192.168.10.1 – 192.168.10.30`, broadcast `192.168.10.31`.
+
+**Problem 2 — Splitting 10.0.0.0/24 into two /25 subnets**
+
+A `/25` splits a /24 exactly in half (128 addresses each, 126 usable):
+
+| Subnet    | Network address | Usable range              | Broadcast     |
+|-----------|------------------|----------------------------|----------------|
+| Subnet 1  | 10.0.0.0/25      | 10.0.0.1 – 10.0.0.126       | 10.0.0.127     |
+| Subnet 2  | 10.0.0.128/25    | 10.0.0.129 – 10.0.0.254     | 10.0.0.255     |
+
+**Problem 3 — What subnet is 172.16.5.200 on, given a /26 mask?**
+
+A `/26` block size is 64. Dividing 200 by 64 gives 3 with a remainder,
+so 200 falls in the 4th block (192–255):
+- Network address: `172.16.5.192`
+- Usable range: `172.16.5.193 – 172.16.5.254`
+- Broadcast: `172.16.5.255`
+- So `172.16.5.200` belongs to the `172.16.5.192/26` subnet.
