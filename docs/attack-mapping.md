@@ -32,6 +32,23 @@ Reference: https://attack.mitre.org/
 | Using the backdoor's shell to run further commands | Execution | T1059 – Command and Scripting Interpreter |
 ## Reflection
 
-_(2–3 sentences: how would a real attacker use this recon info as a next
-step? What would a defender look for in logs/IDS to catch this kind of
-scanning?)_
+A real attacker would treat the "vsftpd 2.3.4" string from an `-sV` scan
+as an immediate red flag — that exact version number is publicly and
+widely known to contain the 2011 backdoor, so an attacker (or an
+automated scanner like Metasploit) could go straight from "service
+detected" to "shell obtained" in seconds, without needing to guess
+credentials or find a separate vulnerability. This is exactly why
+banner/version information matters so much in recon: it doesn't just
+tell you what's running, it tells you what's already broken.
+
+A defender would look for a few tell-tale signs in logs: an FTP login
+attempt where the username is ":)" (or other unusual/non-alphanumeric
+strings) is a strong indicator of this specific exploit attempt. More
+generally, an IDS/IPS watching for unexpected outbound connections or a
+new listening service suddenly appearing on port 6200 — a port with no
+legitimate reason to be open — would catch this even without knowing
+the specific CVE. Keeping software inventories current and verifying
+checksums on downloaded packages (which would have caught the tampered
+vsftpd archive before it was ever installed) are the underlying
+defenses that prevent this class of supply-chain attack in the first
+place.
