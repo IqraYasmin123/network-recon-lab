@@ -1,4 +1,4 @@
-# Networking Basics — Notes
+## Networking Basics — Notes
 
 ## OSI Model (7 layers, top → bottom)
 
@@ -39,6 +39,22 @@ collapses layers 5–7 into "Application" and layers 1–2 into "Link".
 
 ## Notes from my own research
 
-_(Fill in anything from the video/your own reading that clarified a concept
-for you — e.g., a specific analogy that made subnetting click, or a detail
-about the TCP handshake you hadn't seen before.)_
+Seeing the TCP three-way handshake actually happen in a Wireshark
+capture (SYN → SYN/ACK → ACK, packets 31–33 in my capture) made the
+concept click much more than reading about it — it's easy to read
+"TCP is connection-oriented" as an abstract fact, but watching the
+literal handshake packets before any HTTP data was exchanged showed
+why TCP is considered reliable: the connection is fully established
+and acknowledged by both sides before a single byte of the actual
+request is sent.
+
+Running the Nmap scans also clarified the port ranges in a very
+concrete way — seeing FTP on 21, SSH on 22, and HTTP on 80 all show
+up exactly where the "well-known ports" table says they should be
+made the 0–1023 range feel like a real, checkable fact rather than
+just something to memorize.
+
+One detail I hadn't fully appreciated before this lab: UDP's lack of a
+handshake isn't just "less reliable" — it's also *why* it's used for
+things like DHCP and DNS, where speed matters more than guaranteed
+delivery, and the application itself can retry if a request is lost.
